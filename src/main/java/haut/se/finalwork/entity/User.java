@@ -1,6 +1,9 @@
 package haut.se.finalwork.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@Slf4j
+@ToString
 public class User {
     @Id
     @GeneratedValue

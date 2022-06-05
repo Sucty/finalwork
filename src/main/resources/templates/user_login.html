@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+</head>
+<body>
+<form action="user_login" th:object="${user}">
+    <input type="hidden" placeholder="ID" th:field="*{id}"><br>
+    <input type="text" placeholder="用户名" th:field="*{name}"><br>
+    <input type="password" placeholder="密码" th:field="*{pass}"><br>
+    <input type="submit">
+</form>
+<span th:text="${msg}" th:if="${msg}"></span>
+</body>
+</html>
