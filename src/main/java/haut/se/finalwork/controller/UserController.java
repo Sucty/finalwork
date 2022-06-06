@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -37,6 +38,17 @@ public class UserController {
     @RequestMapping("delete_account")
     public void delete_account(Long id){
         userService.deleteById(id);
+    }
+    @RequestMapping("manage_user_page")
+    public String manage_user_page(Model model){
+        List<User> res=userService.findAllUser();
+        model.addAttribute("users",res);
+        return "/manage_user";
+    }
+    @RequestMapping("delete_user")
+    public String delete_user(Long id){
+        userService.deleteById(id);
+        return "/manager_operation";
     }
 
 }
