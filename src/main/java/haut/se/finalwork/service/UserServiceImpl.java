@@ -11,8 +11,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
     @Override
-    public boolean checkLogin(String name, String pass) {
-        List<User> res=userRepository.findUserByNameAndPass(name,pass);
+    public boolean checkLogin(Long id, String pass) {
+        List<User> res=userRepository.findUserByIdAndPass(id,pass);
         return res.size()>0;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
     }
 }

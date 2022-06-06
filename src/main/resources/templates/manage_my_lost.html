@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的招领</title>
+</head>
+<body>
+<table border="1">
+    <tbody>
+    <th>物品描述</th>
+    <th>捡拾地点</th>
+    <th>联系方式</th>
+    <th>操作</th>
+    <tr th:each="lost: ${losts}">
+        <td th:text="*{lost.description}"></td>
+        <td th:text="*{lost.locality}"></td>
+        <td th:text="*{lost.contact}"></td>
+        <td>
+            <a th:href="@{/edit_lost_page(id=${lost.id})}">修改招领信息</a>
+            <a th:href="@{/delete_lost_page(id=${lost.id})}">删除这条招领</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

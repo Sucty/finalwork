@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/edit_lost_id" th:object="${lost}">
+    <input type="hidden" th:field="*{id}"><br>
+    <input type="text" th:field="*{description}" ><br>
+    <input type="text" th:field="*{locality}" ><br>
+    <input type="text" th:field="*{contact}" ><br>
+    <input type="hidden" th:field="*{user}"><br>
+    <input type="submit">
+</form>
+</body>
+</html>

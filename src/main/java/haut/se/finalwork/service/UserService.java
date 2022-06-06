@@ -1,5 +1,6 @@
 package haut.se.finalwork.service;
 
 public interface UserService {
-    boolean checkLogin(String name,String pass);
+    boolean checkLogin(Long id,String pass);
+    void deleteById(Long id);
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="release_lost_info" th:object="${lostProperty}">
+<!--    <input type="hidden" th:field="*{id}"><br>-->
+    描述<input type="text" th:field="*{description}"><br>
+    地点<input type="text" th:field="*{locality}"><br>
+    联系方式<input type="text" th:field="*{contact}"><br>
+    <input type="hidden" th:field="*{user}"><br>
+    <input type="submit">
+</body>
+</html>
