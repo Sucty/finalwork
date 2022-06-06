@@ -5,9 +5,7 @@
     <title>用户注册</title>
 </head>
 <body>
-请注册账户
 <form action="user_signup" th:object="${user}">
-<!--    <input type="text" placeholder="ID" th:field="*{id}"><br>-->
         <input type="text" placeholder="用户名" th:field="*{name}"><br>
     <ul>
         <li th:each="err:${#fields.errors('name')}" th:text="${err}"></li>
@@ -16,7 +14,7 @@
     <ul>
         <li th:each="err:${#fields.errors('pass')}" th:text="${err}"></li>
     </ul>
-    <input type="password" name="password" placeholder="确认密码"><br>
+
     <input type="submit">
 </form>
 <span th:text="${msg}" th:if="${msg}"></span>
