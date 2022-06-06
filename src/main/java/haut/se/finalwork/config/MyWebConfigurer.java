@@ -9,7 +9,7 @@ public class MyWebConfigurer implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
         WebMvcConfigurer.super.addViewControllers(registry);
-        registry.addViewController("/user_signup_page").setViewName("user_signup");
+//        registry.addViewController("/user_signup_page").setViewName("user_signup");
 //        registry.addViewController("/user_login_page").setViewName("/user_login");
     }
 }

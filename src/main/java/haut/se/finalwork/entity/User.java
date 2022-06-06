@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,9 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    @NotEmpty(message="{notBlank}")
     private String name;
+    @NotEmpty(message="{notBlank}")
     private String pass;
     @ToString.Exclude
     @OneToMany(mappedBy = "user")
