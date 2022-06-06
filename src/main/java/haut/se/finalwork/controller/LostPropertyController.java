@@ -63,25 +63,52 @@ public class LostPropertyController {
         List<LostProperty> res=lostPropertyService.findMyLost(id);
         model.addAttribute("losts",res);
         httpSession.setAttribute("user",userRepository.getById(id));
-        System.out.println("test1"+id);
         return "/manage_my_lost";
     }
-    @RequestMapping("edit_lost_page")
-    public String edit_lost_page(Long id,Model model,HttpSession httpSession){
+    @RequestMapping("edit_my_lost_page")
+    public String edit_my_lost_page(Long id,Model model,HttpSession httpSession){
         LostProperty lostProperty=lostPropertyRepository.getById(id);
         model.addAttribute("lost",lostProperty);
         httpSession.setAttribute("user",httpSession.getAttribute("user"));
-        System.out.println("test2"+httpSession.getAttribute("id"));
+        return "/edit_my_lost_form";
+
+    }
+    @RequestMapping("edit_my_lost_id")
+    public String edit_my_lost_id(LostProperty lostProperty,Model model,HttpSession httpSession){
+        lostPropertyService.editById(lostProperty);
+        model.addAttribute(httpSession.getAttribute("user"));
+        return "/user_operation";
+    }
+    @RequestMapping("delete_my_lost")
+    public String delete_my_lost(Long id,HttpSession httpSession,Model model){
+        lostPropertyService.deleteById(id);
+        model.addAttribute(httpSession.getAttribute("user"));
+        return "/user_operation";
+    }
+
+    //管理员操作
+    @RequestMapping("manage_lost_page")
+    public String manage_lost_page(Model model){
+        List<LostProperty> res=lostPropertyService.findAllLost();
+        model.addAttribute("losts",res);
+        return "/manage_lost";
+    }
+    @RequestMapping("edit_lost_page")
+    public String edit_lost_page(Long id,Model model){
+        LostProperty lostProperty=lostPropertyRepository.getById(id);
+        model.addAttribute("lost",lostProperty);
         return "/edit_lost_form";
 
     }
     @RequestMapping("edit_lost_id")
-    public String edit_lost_id(LostProperty lostProperty,Model model,HttpSession httpSession){
+    public String edit_lost_id(LostProperty lostProperty){
         lostPropertyService.editById(lostProperty);
-        model.addAttribute(httpSession.getAttribute("user"));
-        return "/user_operation";
-
-
+        return "/manager_operation";
+    }
+    @RequestMapping("delete_lost")
+    public String delete_lost(Long id){
+        lostPropertyService.deleteById(id);
+        return "/manager_operation";
     }
 
 }

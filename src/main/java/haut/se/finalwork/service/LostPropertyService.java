@@ -9,4 +9,5 @@ public interface LostPropertyService {
     List<LostProperty> findAllLost();
     List<LostProperty> findMyLost(Long id);
     void editById(LostProperty lostProperty);
+    void deleteById(Long id);
 }

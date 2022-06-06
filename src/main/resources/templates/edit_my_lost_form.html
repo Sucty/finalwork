@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/edit_lost_id" th:object="${lost}">
+<form action="/edit_my_lost_id" th:object="${lost}">
     <input type="hidden" th:field="*{id}"><br>
     物品描述<input type="text" placeholder="物品描述"th:field="*{description}" ><br>
     地&emsp;&emsp;点<input type="text" placeholder="地点"th:field="*{locality}" ><br>

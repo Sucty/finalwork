@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Slf4j
 @Entity
+@ToString
 public class LostProperty {
     @Id
     @GeneratedValue
@@ -19,6 +20,6 @@ public class LostProperty {
     private String locality;
     private String contact;
     @ToString.Exclude
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private User user;
 }

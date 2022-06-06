@@ -33,4 +33,9 @@ public class LostPropertyServiceImpl implements LostPropertyService{
     public void editById(LostProperty lostProperty) {
         lostPropertyRepository.save(lostProperty);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        lostPropertyRepository.deleteById(id);
+    }
 }

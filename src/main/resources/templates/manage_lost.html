@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的招领</title>
+    <title>Title</title>
 </head>
 <body>
 <table border="1">
@@ -16,8 +16,8 @@
         <td th:text="*{lost.locality}"></td>
         <td th:text="*{lost.contact}"></td>
         <td>
-            <a th:href="@{/edit_my_lost_page(id=${lost.id})}">修改</a>
-            <a th:href="@{/delete_my_lost(id=${lost.id})}">删除</a>
+            <a th:href="@{/edit_lost_page(id=${lost.id})}">修改</a>
+            <a th:href="@{/delete_lost(id=${lost.id})}">删除</a>
         </td>
     </tr>
     </tbody>
