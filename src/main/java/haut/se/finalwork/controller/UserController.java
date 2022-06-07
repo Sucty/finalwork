@@ -27,8 +27,14 @@ public class UserController {
         return "/user_signup";
     }
     @RequestMapping("user_signup")
-    public String user_signup(@Valid User user, BindingResult bindingResult, Model model, HttpSession httpSession){
-
+    public String user_signup(@Valid User user, String password,BindingResult bindingResult, Model model, HttpSession httpSession){
+        if (password!=user.getPass()){
+            System.out.println(user.getPass());
+            model.addAttribute("msg","两次输入密码不一致");
+            return "/user_signup";
+        }
+        System.out.println("test"+user.getPass());
+        System.out.println("test"+password);
         if(bindingResult.hasErrors())
         {
             model.addAttribute("msg","注册失败");

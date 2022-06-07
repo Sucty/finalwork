@@ -14,6 +14,7 @@
     <ul>
         <li th:each="err:${#fields.errors('pass')}" th:text="${err}"></li>
     </ul>
+    <input type="password" placeholder="确认密码" field="password"><br>
 
     <input type="submit">
 </form>
