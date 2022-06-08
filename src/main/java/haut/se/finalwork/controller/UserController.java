@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -24,32 +25,31 @@ public class UserController {
     @RequestMapping("user_signup_page")
     public String user_signup_page(User user,Model model){
         model.addAttribute("user",user);
-        return "/user_signup";
+        return "/user_signup_form";
     }
     @RequestMapping("user_signup")
-    public String user_signup(@Valid User user, String password,BindingResult bindingResult, Model model, HttpSession httpSession){
-        if (password!=user.getPass()){
-            System.out.println(user.getPass());
-            model.addAttribute("msg","两次输入密码不一致");
-            return "/user_signup";
+    public String user_signup_form(User user, String password,BindingResult bindingResult, Model model, HttpSession httpSession){
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("user",user);
+            System.out.println(user);
+            return "/user_signup_form";
         }
-        System.out.println("test"+user.getPass());
-        System.out.println("test"+password);
-        if(bindingResult.hasErrors())
-        {
-            model.addAttribute("msg","注册失败");
-            return "/user_signup";
+        else {
+            if (password!=user.getPass()){
+                System.out.println(user.getPass());
+                model.addAttribute("msg","两次输入密码不一致");
+                return "/user_signup_form";
+            }
+            try {
+                userService.addUser(user);
+                model.addAttribute("msg","注册成功");
+            }catch (Exception e){
+                model.addAttribute("msg","注册失败");
+                return "redirect:/user_signup_page";
+            }
+            model.addAttribute("msg","欢迎"+user.getName()+"你的ID为"+user.getId()+"请使用ID登录");
+            return "signup_success";
         }
-        try {
-            userService.addUser(user);
-            model.addAttribute("msg","注册成功");
-        }catch (Exception e){
-            model.addAttribute("msg","注册失败");
-            return "redirect:/user_signup_page";
-        }
-        model.addAttribute("msg","欢迎"+user.getName()+"你的ID为"+user.getId()+"请使用ID登录");
-        return "signup_success";
-
     }
     @RequestMapping("user_login_page")
     public String user_login_page(User user, Model model){

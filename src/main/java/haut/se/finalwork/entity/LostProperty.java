@@ -6,6 +6,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -18,6 +19,7 @@ public class LostProperty {
     private Long id;
     private String description;
     private String locality;
+    @NotEmpty(message="{notBlank}")
     private String contact;
     @ToString.Exclude
     @ManyToOne

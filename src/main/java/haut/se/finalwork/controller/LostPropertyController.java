@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -74,10 +76,18 @@ public class LostPropertyController {
 
     }
     @RequestMapping("edit_my_lost_id")
-    public String edit_my_lost_id(LostProperty lostProperty,Model model,HttpSession httpSession){
-        lostPropertyService.editById(lostProperty);
-        model.addAttribute(httpSession.getAttribute("user"));
-        return "/user_operation";
+    public String edit_my_lost_id(@Valid @ModelAttribute("lost")LostProperty lostProperty, BindingResult bindingResult, Model model, HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("lost", lostProperty);
+            httpSession.setAttribute("user", httpSession.getAttribute("user"));
+            return "/edit_my_lost_form";
+
+        }
+        else {
+            lostPropertyService.editById(lostProperty);
+            model.addAttribute(httpSession.getAttribute("user"));
+            return "/user_operation";
+        }
     }
     @RequestMapping("delete_my_lost")
     public String delete_my_lost(Long id,HttpSession httpSession,Model model){

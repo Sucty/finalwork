@@ -10,6 +10,9 @@
     物品描述<input type="text" placeholder="物品描述"th:field="*{description}" ><br>
     地&emsp;&emsp;点<input type="text" placeholder="地点"th:field="*{locality}" ><br>
     联系方式<input type="text" placeholder="联系方式"th:field="*{contact}" ><br>
+    <ul>
+        <li th:each="err:${#fields.errors('contact')}" th:text="${err}"></li>
+    </ul>
     <input type="hidden" th:field="*{user}"><br>
     <input type="submit">
 </form>

@@ -22,9 +22,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    @NotEmpty(message="{notBlank}")
     private String name;
-    @NotEmpty(message="{notBlank}")
     private String pass;
     @ToString.Exclude
     @OneToMany(mappedBy = "user")
